@@ -1,5 +1,6 @@
 const initState = {
   isloggedIn: false,
+  accessToken: '',
   profile: [],
   documents: [],
   laptop_delivery: [],
