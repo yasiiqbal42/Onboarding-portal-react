@@ -13,6 +13,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-final-form": "^6.5.9",
+    "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "latest",
     "rechart": "^0.0.1",

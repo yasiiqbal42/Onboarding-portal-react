@@ -1,6 +1,13 @@
 const initState = {
   isloggedIn: false,
-  accessToken: '',
+  login: [],
+  accessToken: sessionStorage.getItem("access_token")
+    ? sessionStorage.getItem("access_token")
+    : "",
+  courses: [],
+  wishlist: [],
+  cart: [],
+  errors: "",
   profile: [],
   documents: [],
   laptop_delivery: [],
@@ -9,14 +16,16 @@ const initState = {
   POC: [],
 };
 
-//login
-//logout
-
-const appReducer = (state = initState, action) => {
+const coursesReducer = (state = initState, action) => {
   switch (action.type) {
-    case ""
-    case "GET_ALL_POC":
-      return {...state, POC: action.payload}
+    case "LOGIN":
+      console.log("Inside Reducer", action.payload);
+      const { isloggedIn } = state;
+      return {
+        ...state,
+        login: [...state.login, { ...action.payload }],
+        isloggedIn: true,
+      };
     case "GET_ALL_COURSES":
       return { ...state, courses: action.payload };
 
@@ -56,10 +65,16 @@ const appReducer = (state = initState, action) => {
         ...state,
         cart: [...state.cart.filter((item) => item.id !== action.payload)],
       };
+    // case "PERFORM_LOGIN":
+    //   console.log("Inside Login Reducer");
+    //   return {
+    //     ...state,
+    //     login: action.payload,
+    //   };
 
     default:
       return state;
   }
 };
 
-export default appReducer;
+export default coursesReducer;

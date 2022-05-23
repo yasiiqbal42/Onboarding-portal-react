@@ -1,22 +1,29 @@
-import * as React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Typography from '../components/modules/components/Typography';
-import AppFooter from '../components/modules/views/AppFooter';
-import AppAppBar from '../components/modules/views/AppAppBar';
-import AppForm from '../components/modules/views/AppForm';
-import { email, required } from '../components/modules/form/validation';
-import RFTextField from '../components/modules/form/RFTextField';
-import FormButton from '../components/modules/form/FormButton';
-import FormFeedback from '../components/modules/form/FormFeedback';
-import withRoot from '../components/modules/withRoot';
+import * as React from "react";
+import { Field, Form, FormSpy } from "react-final-form";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Typography from "./components/modules/components/Typography";
+import AppAppBar from "./components/modules/views/AppAppBar";
+import AppForm from "./components/modules/views/AppForm";
+import { email, required } from "./components/modules/form/validation";
+import RFTextField from "./components/modules/form/RFTextField";
+import FormButton from "./components/modules/form/FormButton";
+import FormFeedback from "./components/modules/form/FormFeedback";
+import withRoot from "./components/modules/withRoot";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./redux/dashboard/actions";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [sent, setSent] = React.useState(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isloggedIn } = useSelector((state) => state.dashboard);
+  console.log("Store ---", "Login Data - ", "isLoggedIn - ", isloggedIn);
+
   const validate = (values) => {
-    const errors = required(['email', 'password'], values);
+    const errors = required(["email", "password"], values);
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -28,8 +35,11 @@ function SignIn() {
     return errors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    dispatch(login(e));
     setSent(true);
+    //need to validate for authentication
+      navigate("/dashboard");
   };
 
   return (
@@ -52,12 +62,17 @@ function SignIn() {
           </Typography> */}
         </React.Fragment>
         <Form
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
           subscription={{ submitting: true }}
           validate={validate}
         >
-          {({ handleSubmit: handleSubmit2, submitting }) => (
-            <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
+          {({ handleSubmit: handleSubmit, submitting }) => (
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 6 }}
+            >
               <Field
                 autoComplete="email"
                 autoFocus
@@ -97,8 +112,9 @@ function SignIn() {
                 size="large"
                 color="secondary"
                 fullWidth
+                // onClick={()=>navigate("/about")}
               >
-                {submitting || sent ? 'In progress…' : 'Sign In'}
+                {submitting || sent ? "Logging…" : "Sign In"}
               </FormButton>
             </Box>
           )}
