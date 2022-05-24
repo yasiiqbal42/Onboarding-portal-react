@@ -1,6 +1,7 @@
 import { combineReducers, applyMiddleware, createStore } from "redux";
-
+import { composeWithDevTools } from 'redux-devtools-extension';
 import dashboardReducer from "./dashboard/dashboardReducer";
+
 
 import thunk from "redux-thunk";
 
@@ -10,8 +11,7 @@ const reducer = combineReducers({
 
 export const store = createStore(
    reducer ,
-
-  applyMiddleware(thunk)
+   composeWithDevTools(
+  applyMiddleware(thunk))
 );
 
-console.log(store)

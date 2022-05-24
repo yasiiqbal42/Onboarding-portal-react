@@ -25,6 +25,8 @@ import HomeScreen from "./pages/HomeScreen";
 import { Routes, Route, NavLink } from "react-router-dom";
 import Document from "./pages/Document";
 import { useDispatch, useSelector } from "react-redux";
+import LogOutMenu from "./pages/Logout";
+
 
 function Copyright(props) {
   return (
@@ -132,11 +134,12 @@ function DashboardContent() {
             >
               <NavLink to="/">HashedIn</NavLink>
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            {/* <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary"> */}
+                {/* <NotificationsIcon /> */}
+                <LogOutMenu/>
+              {/* </Badge>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

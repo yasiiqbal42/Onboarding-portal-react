@@ -1,8 +1,4 @@
-export const GET_ALL_COURSES = "GET_ALL_COURSES";
-export const GET_COURSE_BY_ID = "GET_COURSE_BY_ID";
-
-export const ADD_TO_CART = "ADD_TO_CART";
-export const DELETE_FROM_CART = "DELETE_FROM_CART";
-
-export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
-export const DELETE_FROM_WISHLIST = "DELETE_FROM_WISHLIST";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const GET_PROFILE = "GET_PROFILE";
+export const GET_DOCUMENT = "GET_DOCUMENT";

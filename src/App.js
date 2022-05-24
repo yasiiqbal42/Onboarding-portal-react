@@ -1,37 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate,Route } from "react-router-dom";
-import SignIn from "./SignIn";
+import { Navigate, Route, useNavigate } from "react-router-dom";
 
-export function AuthGuard(props) {
-  const navigate = useNavigate();
-
+export default function PrivateRoute({
+  component: Component,
+  authed,
+  children,
+  ...rest
+}) {
   const { login, isloggedIn, accessToken } = useSelector(
     (state) => state.dashboard
   );
-  if (isloggedIn) {
-    return props.children;
+  if (!accessToken) {
+    return <Navigate to="/signin" state={{ from: location }} />;
   }
-  return navigate("/signin");
-}
-// const mapStateToProps = (state) => {
-//   return {
-//     isloggedIn: state.isloggedIn,
-//     accessToken: state.accessToken,
-//   };
-// };
-// export default connect(mapStateToProps)(App);
 
-export default function PrivateRoute(props) {
-  const { login, isloggedIn, accessToken } = useSelector(
-    (state) => state.dashboard
-  );
-  return (
-    // <Route
-    //   {...rest}
-    //   render={(props) =>
-        isloggedIn === true ? <Component {...props} /> : <SignIn />
-    //   }
-    // />
-  );
+  return children;
 }

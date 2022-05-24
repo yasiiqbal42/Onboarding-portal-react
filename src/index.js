@@ -4,14 +4,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import SignInHOC from "./components/SignInHOC";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import SignIn from "../src/SignIn";
 import Dashboard from "./Dashboard";
-// import AuthGuard from "./App";
 import PrivateRoute from "./App";
+import LogOutMenu from "./pages/Logout";
+import Dummy from "./pages/Dummy";
 // import SignIn from "../src/SignIn";
+
+//need to create axios instance, request interceptor
 
 ReactDOM.render(
   <React.Fragment>
@@ -19,24 +21,14 @@ ReactDOM.render(
     <CssBaseline />
     <BrowserRouter>
       <Provider store={store}>
-        <Routes>
+        {/* <Dashboard/> */}
+        <Dummy />
+        {/* <Routes>
           <Route path="/signin" element={<SignIn />} />
-          {/* <Route
-            path="/dashboard"
-            element={
-              <AuthGuard>
-                <Dashboard />
-              </AuthGuard>
-            }
-          >
-            <AuthGuard >
-              <Dashboard />
-            </AuthGuard>
-          </Route> */}
-          <Route element={
-            <PrivateRoute path="/dashboard" component={Dashboard} />} path="/dashboard">
+          <Route path="/dashboard" element={
+            <PrivateRoute><Dashboard/></PrivateRoute>}>
           </Route>
-        </Routes>
+        </Routes> */}
       </Provider>
     </BrowserRouter>
   </React.Fragment>,

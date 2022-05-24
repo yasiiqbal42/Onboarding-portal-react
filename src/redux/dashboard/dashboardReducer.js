@@ -1,80 +1,44 @@
+import * as actions from "./actionTypes";
 const initState = {
-  isloggedIn: false,
   login: [],
-  accessToken: sessionStorage.getItem("access_token")
-    ? sessionStorage.getItem("access_token")
-    : "",
-  courses: [],
-  wishlist: [],
-  cart: [],
-  errors: "",
-  profile: [],
+  accessToken: "",
+  // accessToken: sessionStorage.getItem("access_token")
+  //   ? sessionStorage.getItem("access_token")
+  //   : "",
   documents: [],
+  profile: [],
   laptop_delivery: [],
   kit_delivery: [],
   events: [],
   POC: [],
 };
+// debugger
 
-const coursesReducer = (state = initState, action) => {
+const dashboardReducer = (state = initState, action) => {
   switch (action.type) {
-    case "LOGIN":
-      console.log("Inside Reducer", action.payload);
+    case actions.LOGIN:
+      console.log("In Dashboard");
       const { isloggedIn } = state;
       return {
         ...state,
-        login: [...state.login, { ...action.payload }],
-        isloggedIn: true,
+        // login: [...state.login, { ...action.payload }],
+        //isloggedIn: true,
+        accessToken: action.payload,
       };
-    case "GET_ALL_COURSES":
-      return { ...state, courses: action.payload };
-
-    case "ADD_TO_WISHLIST":
-      const wishlist = [...state.wishlist];
-      if (wishlist.find((w) => w.id === action.payload.id))
-        return { ...state, errors: "Already added in Wishlist" };
-      else
-        return {
-          ...state,
-          wishlist: [...state.wishlist, { ...action.payload }],
-          errors: "",
-        };
-
-    case "REMOVE_FROM_WISHLIST":
-      console.log("Inside remove wishlist reducer");
+    case actions.LOGOUT:
       return {
         ...state,
-        wishlist: [
-          ...state.wishlist.filter((item) => item.id !== action.payload),
-        ],
+        accessToken: "",
       };
-
-    case "ADD_TO_CART":
-      const cart = [...state.cart];
-      if (cart.find((w) => w.id === action.payload.id))
-        return { ...state, errors: "Already added in cart" };
-      else
-        return {
-          ...state,
-          cart: [...state.cart, { ...action.payload }],
-          errors: "",
-        };
-    case "DELETE_FROM_CART":
-      console.log("Inside remove cart reducer");
+    case actions.GET_PROFILE:
       return {
         ...state,
-        cart: [...state.cart.filter((item) => item.id !== action.payload)],
+        profile: [...state.profile, { ...action.payload }],
       };
-    // case "PERFORM_LOGIN":
-    //   console.log("Inside Login Reducer");
-    //   return {
-    //     ...state,
-    //     login: action.payload,
-    //   };
 
     default:
       return state;
   }
 };
 
-export default coursesReducer;
+export default dashboardReducer;

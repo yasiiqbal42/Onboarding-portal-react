@@ -1,76 +1,48 @@
-// import axios from "axios";
-export const GET_ALL_COURSES = "GET_ALL_COURSES";
-export const GET_COURSE_BY_ID = "GET_COURSE_BY_ID";
+import axios from "axios";
+import * as actions from "./actionTypes";
 
-// export const ADD_TO_CART = "ADD_TO_CART";
-// export const DELETE_FROM_CART = "DELETE_FROM_CART";
-
-// export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
-// export const DELETE_FROM_WISHLIST = "DELETE_FROM_WISHLIST";
-
-const URL = "https://627cfe98bf2deb7174e560df.mockapi.io/courses";
-
-// export const getCourses = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(URL);
-//       dispatch({ type: GET_ALL_COURSES, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-export const addToWishlist = (data) => {
-  return {
-    type: "ADD_TO_WISHLIST",
-    payload: data,
-  };
-};
-
-export const removeFromWishlist = (id) => {
-  console.log("Inside removeFromWishlist action");
-  return {
-    type: "REMOVE_FROM_WISHLIST",
-    payload: id,
-  };
-};
-
-export const addToCart = (data) => {
-  return {
-    type: "ADD_TO_CART",
-    payload: data,
-  };
-};
-
-export const deleteFromCart = (id) => {
-  return {
-    type: "DELETE_FROM_CART",
-    payload: id,
-  };
-};
-
-export const setProfileData = (data) => {
-  return {
-    type: "SET_PROFILE_DATA",
-    payload: data,
-  };
-};
+const loginURl = "http://127.0.0.1:8000/api/token/";
+const profileURL = "http://localhost:8000/document/";
+const header={
+  
+}
 
 export const login = (data) => {
-  //API Call and validation of authentication 
-  //call api in middleware --> response
-  
   return async (dispatch) => {
-        try {
-          const response = await axios.get(URL);
-          dispatch({ type: LOGIN, payload: response.data });
-        } catch (error) {
-          console.log(error);
-        }
-      };
-  return {
-    type: "LOGIN",
-    payload: data,
+    await axios
+      .post(loginURl, data)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data.access);
+          sessionStorage.setItem("access_token", response.data.access);
+          dispatch({ type: actions.LOGIN, payload: response.data.access });
+        } else alert("Invalid Login Credentials");
+      })
+      .catch((error) => console.log(error));
   };
+};
+
+export const logout = () => {
+  sessionStorage.removeItem("access_token");
+  return {
+    type: actions.LOGOUT,
+  };
+};
+
+export const getProfile = () => {
+  return async (dispatch) => {
+    await axios
+      .get(profileURL)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          dispatch({ type: actions.GET_PROFILE, payload: response.data });
+        } else alert("Invalid Login Credentials");
+      })
+      .catch((error) => console.log(error));
+  };
+  // return {
+  //   type: actions.GET_PROFILE,
+  //   payload: { username: "Yasir" },
+  // };
 };

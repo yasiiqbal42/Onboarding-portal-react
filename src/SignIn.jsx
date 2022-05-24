@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Field, Form, FormSpy } from "react-final-form";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
@@ -12,14 +12,15 @@ import FormFeedback from "./components/modules/form/FormFeedback";
 import withRoot from "./components/modules/withRoot";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./redux/dashboard/actions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Navigate } from "react-router-dom";
+import { Password } from "@mui/icons-material";
 
 function SignIn() {
   const [sent, setSent] = React.useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isloggedIn } = useSelector((state) => state.dashboard);
+  const { isloggedIn, accessToken } = useSelector((state) => state.dashboard);
   console.log("Store ---", "Login Data - ", "isLoggedIn - ", isloggedIn);
 
   const validate = (values) => {
@@ -34,15 +35,24 @@ function SignIn() {
 
     return errors;
   };
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     navigate("/dashboard");
+  //   }
+  // }, []);
+
 
   const handleSubmit = (e) => {
+    e.username = e.email;
+    delete e.email;
+    console.log('from Signin',e)
     dispatch(login(e));
     setSent(true);
-    //need to validate for authentication
-      navigate("/dashboard");
   };
 
   return (
+    accessToken?
+    <Navigate to ="/dashboard"></Navigate>:
     <React.Fragment>
       <AppAppBar />
       <AppForm>
@@ -62,7 +72,7 @@ function SignIn() {
           </Typography> */}
         </React.Fragment>
         <Form
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={handleSubmit}
           subscription={{ submitting: true }}
           validate={validate}
         >
