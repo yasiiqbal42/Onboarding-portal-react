@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import SignIn from "../src/SignIn";
@@ -21,14 +21,26 @@ ReactDOM.render(
     <CssBaseline />
     <BrowserRouter>
       <Provider store={store}>
-        {/* <Dashboard/> */}
-        <Dummy />
-        {/* <Routes>
+        <Routes>
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/dashboard" element={
-            <PrivateRoute><Dashboard/></PrivateRoute>}>
-          </Route>
-        </Routes> */}
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          ></Route>
+          {/* <Navigate replace to="/dashboard"/>
+          // <Route
+          //   path="*" navigate
+          //   element={
+          //     <PrivateRoute>
+          //       <Dashboard />
+          //     </PrivateRoute>
+          //   }
+          ></Route> */}
+        </Routes>
       </Provider>
     </BrowserRouter>
   </React.Fragment>,

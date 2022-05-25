@@ -1,14 +1,13 @@
 import * as actions from "./actionTypes";
 const initState = {
-  login: [],
-  accessToken: "",
-  // accessToken: sessionStorage.getItem("access_token")
-  //   ? sessionStorage.getItem("access_token")
-  //   : "",
+  userId:'',
+  accessToken: sessionStorage.getItem("access_token")
+    ? sessionStorage.getItem("access_token")
+    : "",
   documents: [],
   profile: [],
-  laptop_delivery: [],
-  kit_delivery: [],
+  laptopDelivery: [],
+  kitDelivery: [],
   events: [],
   POC: [],
 };
@@ -33,9 +32,13 @@ const dashboardReducer = (state = initState, action) => {
     case actions.GET_PROFILE:
       return {
         ...state,
-        profile: [...state.profile, { ...action.payload }],
+        profile: [ ...action.payload ],
       };
-
+    case actions.GET_DOCUMENT:
+      return {
+        ...state,
+        documents: [ ...action.payload ],
+      };
     default:
       return state;
   }
