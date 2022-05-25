@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "axios": "^0.27.2",
     "react": "latest",
     "react-dom": "latest",
     "react-final-form": "^6.5.9",

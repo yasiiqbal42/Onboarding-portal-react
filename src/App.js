@@ -17,9 +17,13 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./components/list-items/listItems";
+import {
+  mainListItems,
+  secondaryListItems,
+} from "./components/list-items/listItems";
 import HomeScreen from "./pages/HomeScreen";
 import { Routes, Route, NavLink } from "react-router-dom";
+import Documents from "./pages/Documents";
 
 function Copyright(props) {
   return (
@@ -168,6 +172,7 @@ function DashboardContent() {
             <Routes>
               {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/" element={<HomeScreen />} />
+              <Route path="/documents" element={<Documents />} />
             </Routes>
             <Copyright sx={{ pt: 4 }} />
           </Container>
