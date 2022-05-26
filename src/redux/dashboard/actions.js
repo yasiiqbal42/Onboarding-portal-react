@@ -3,7 +3,7 @@ import * as actions from "./actionTypes";
 import parseJwt from "../../helpers/jwtHelper";
 
 const loginURl = "http://127.0.0.1:8000/api/token/";
-const documentURL = "http://localhost:8000/document/";
+const documentURL = "http://localhost:8000/documentByID/";
 const profileURL = "http://127.0.0.1:8000/user/";
 
 const token =
@@ -19,8 +19,15 @@ export const login = (data) => {
           // console.log("response header", response.headers);
           sessionStorage.setItem("access_token", response.data.access);
           const tokenPayload = parseJwt(response.data.access);
+          sessionStorage.setItem("user_id", tokenPayload.user_id);
           console.log("Parse", tokenPayload.user_id);
-          dispatch({ type: actions.LOGIN, payload: response.data.access });
+          dispatch({
+            type: actions.LOGIN,
+            payload: {
+              token: response.data.access,
+              user_id: tokenPayload.user_id,
+            },
+          });
         } else alert("Invalid Login Credentials");
       })
       .catch((error) => console.log(error));
@@ -36,6 +43,7 @@ export const logout = () => {
 
 // .get(profileURL, { headers: { Authorization: `Bearer ${token}` } })
 
+
 export const getProfile = () => {
   return async (dispatch) => {
     await axios
@@ -50,17 +58,18 @@ export const getProfile = () => {
   };
 };
 
-export const getDocument = () => {
-  // console.log("In action");
+export const getDocument = (userId) => {
+  console.log('get document url',documentURL+userId);
   return async (dispatch) => {
     await axios
-      .get(documentURL)
+      .get(documentURL+userId+"/")
       .then((response) => {
+        console.log('Get document Data',response.data);
         if (response.status === 200) {
-          // console.log(response.data);
+          // console.log('Get document Data',response.data);
           dispatch({ type: actions.GET_DOCUMENT, payload: response.data });
         } else alert("Invalid Login Credentials");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('Code fatt ',error));
   };
 };

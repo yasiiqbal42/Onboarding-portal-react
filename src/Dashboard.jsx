@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useEffect } from "react";
+// import { getDocument } from "../redux/dashboard/actions";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -26,7 +27,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Document from "./pages/Document";
 import { useDispatch, useSelector } from "react-redux";
 import LogOutMenu from "./pages/Logout";
-
+import { getDocument } from "./redux/dashboard/actions";
 
 function Copyright(props) {
   return (
@@ -101,7 +102,12 @@ function DashboardContent() {
   };
 
   const { login, isloggedIn } = useSelector((state) => state.dashboard);
+  // const { documents, userId } = useSelector((state) => state.dashboard);
   console.log("Store ---", "Login Data - ", login, "isLoggedIn - ", isloggedIn);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getDocument(userId));
+  // }, []);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -110,7 +116,8 @@ function DashboardContent() {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: "24px", // keep right padding when drawer closed
+              pr: "24px",
+              background: "#08305a", // keep right padding when drawer closed
             }}
           >
             <IconButton
@@ -130,16 +137,17 @@ function DashboardContent() {
               variant="h6"
               color="inherit"
               noWrap
+              border="none"
               sx={{ flexGrow: 1 }}
             >
-              <NavLink to="/">HashedIn</NavLink>
+              <NavLink
+                style={{ color: "rgb(252, 103, 49)", textDecoration: "none" }}
+                to="/"
+              >
+                OnBoarding Portal
+              </NavLink>
             </Typography>
-            {/* <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary"> */}
-                {/* <NotificationsIcon /> */}
-                <LogOutMenu/>
-              {/* </Badge>
-            </IconButton> */}
+            <LogOutMenu />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

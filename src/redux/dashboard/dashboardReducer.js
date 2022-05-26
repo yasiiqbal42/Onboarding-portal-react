@@ -1,6 +1,8 @@
 import * as actions from "./actionTypes";
 const initState = {
-  userId:'',
+  userId: sessionStorage.getItem("user_id")
+  ? sessionStorage.getItem("user_id")
+  : "",
   accessToken: sessionStorage.getItem("access_token")
     ? sessionStorage.getItem("access_token")
     : "",
@@ -22,7 +24,8 @@ const dashboardReducer = (state = initState, action) => {
         ...state,
         // login: [...state.login, { ...action.payload }],
         //isloggedIn: true,
-        accessToken: action.payload,
+        accessToken: action.payload.token,
+        userId: action.payload.user_id,
       };
     case actions.LOGOUT:
       return {
@@ -32,12 +35,12 @@ const dashboardReducer = (state = initState, action) => {
     case actions.GET_PROFILE:
       return {
         ...state,
-        profile: [ ...action.payload ],
+        profile: [...action.payload],
       };
     case actions.GET_DOCUMENT:
       return {
         ...state,
-        documents: [ ...action.payload ],
+        documents: [...action.payload],
       };
     default:
       return state;

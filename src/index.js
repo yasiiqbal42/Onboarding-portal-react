@@ -9,11 +9,9 @@ import { store } from "./redux/store";
 import SignIn from "../src/SignIn";
 import Dashboard from "./Dashboard";
 import PrivateRoute from "./App";
-import LogOutMenu from "./pages/Logout";
-import Dummy from "./pages/Dummy";
+
 // import SignIn from "../src/SignIn";
 
-//need to create axios instance, request interceptor
 
 ReactDOM.render(
   <React.Fragment>
@@ -31,15 +29,6 @@ ReactDOM.render(
               </PrivateRoute>
             }
           ></Route>
-          {/* <Navigate replace to="/dashboard"/>
-          // <Route
-          //   path="*" navigate
-          //   element={
-          //     <PrivateRoute>
-          //       <Dashboard />
-          //     </PrivateRoute>
-          //   }
-          ></Route> */}
         </Routes>
       </Provider>
     </BrowserRouter>
