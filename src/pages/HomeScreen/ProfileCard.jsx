@@ -59,6 +59,8 @@ export default function ProfileCard() {
     () => dispatch(getProfile());
     // () => dispatch(getProfileAddress());
   };
+  //sm=12
+  //md=6
 
   return (
     <Grid

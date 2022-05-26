@@ -20,36 +20,30 @@ const navStyle = {
   fontWeight: "700",
 };
 
-const iconColor={}
+const iconColor = {};
 
 export const mainListItems = (
   <React.Fragment>
     <NavLink to="/dashboard" style={navStyle}>
       <ListItemButton>
         <ListItemIcon>
-          <DashboardIcon color='white'/>
+          <DashboardIcon sx={{ color: "white" }} />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
     </NavLink>
-    <NavLink
-      to="/profile"
-      style={navStyle}
-    >
+    <NavLink to="/profile" style={navStyle}>
       <ListItemButton>
         <ListItemIcon>
-          <PersonIcon />
+          <PersonIcon sx={{ color: "white" }} />
         </ListItemIcon>
         <ListItemText primary="Profile" />
       </ListItemButton>
     </NavLink>
-    <NavLink
-      to="/documents"
-      style={navStyle}
-    >
+    <NavLink to="/documents" style={navStyle}>
       <ListItemButton>
         <ListItemIcon>
-          <ArticleIcon />
+          <ArticleIcon sx={{ color: "white" }} />
         </ListItemIcon>
         <ListItemText primary="Documents" />
       </ListItemButton>
@@ -71,13 +65,10 @@ export const mainListItems = (
         <ListItemText primary="Kit Delivery" />
       </ListItemButton>
     </NavLink> */}
-    <NavLink
-      to="/poc"
-      style={navStyle}
-    >
+    <NavLink to="/poc" style={navStyle}>
       <ListItemButton>
         <ListItemIcon>
-          <PeopleIcon />
+          <PeopleIcon sx={{ color: "white" }} />
         </ListItemIcon>
         <ListItemText primary="POC" />
       </ListItemButton>

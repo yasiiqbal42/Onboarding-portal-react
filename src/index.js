@@ -9,9 +9,9 @@ import { store } from "./redux/store";
 import SignIn from "../src/SignIn";
 import Dashboard from "./Dashboard";
 import PrivateRoute from "./App";
+import Dummy from "./pages/HomeScreen/Dummy";
 
 // import SignIn from "../src/SignIn";
-
 
 ReactDOM.render(
   <React.Fragment>
@@ -30,6 +30,7 @@ ReactDOM.render(
             }
           ></Route>
         </Routes>
+        {/* <Dummy /> */}
       </Provider>
     </BrowserRouter>
   </React.Fragment>,

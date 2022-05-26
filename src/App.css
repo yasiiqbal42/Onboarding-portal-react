@@ -52,14 +52,14 @@
   font-family: "proxima_nova_rgregular", Helvetica, Arial, sans-serif;
   color: #0b294e;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 22px;
 }
 .currentAddress {
   font-family: "proxima_nova_rgregular", Helvetica, Arial, sans-serif;
-  color: #4f678c;
+  color: #0b294e;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 22px;
   padding-top: 13px;
 }

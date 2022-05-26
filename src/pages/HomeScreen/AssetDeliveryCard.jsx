@@ -18,8 +18,8 @@ export default function AssetDeliveryCard() {
   const laptopCourierName = "Blue Dart";
   const kitCourierName = "DHL";
   //Will take current address of the user from store
-  // const currentAddress = "Mojahidpur West, Bhagalpur, Bihar, 812002";
-  const currentAddress = "";
+  const currentAddress = "Mojahidpur West, Bhagalpur, Bihar, 812002";
+  // const currentAddress = "";
   return (
     <Grid
       item
