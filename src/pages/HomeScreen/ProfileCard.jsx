@@ -26,7 +26,7 @@ export default function ProfileCard() {
 
   const profileData = {
     first_name: "Yasir",
-    last_name: "",
+    last_name: "Iqbal",
     employee_id: "1039642",
     email: "yasiiqbal@deloitte.com",
     phone_number: "8998",
@@ -101,7 +101,7 @@ export default function ProfileCard() {
             sx={{
               paddingLeft: "2%",
               height: "100%",
-              width: "40%",
+              width: "50%",
               borderRight: 2,
               borderColor: "#4f678c",
             }}

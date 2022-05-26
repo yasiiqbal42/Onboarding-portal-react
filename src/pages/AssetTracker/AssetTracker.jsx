@@ -2,8 +2,9 @@ import React from "react";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
-import "./AssetTracker.css";
-import orderFlow from "../../helpers/generateOrderFlow";
+// import "./AssetTracker.css";
+import classes from "./AssetTracker.module.css";
+import orderFlow from "./generateOrderFlow";
 
 export default function AssetTracker({
   statusCode,
@@ -12,28 +13,32 @@ export default function AssetTracker({
   currentAddressStatus = 0,
 }) {
   return currentAddressStatus ? (
-    <Box className="card">
-      <Box className="tracking" display="flex" sx={{ height: "50%" }}>
+    <Box className={classes["card"]}>
+      <Box
+        className={classes["tracking"]}
+        display="flex"
+        sx={{ height: "50%" }}
+      >
         <Typography
           display="inline"
-          className="title customFontField"
+          className={`${classes["title"]} ${classes["customFontField"]}`}
         >{`Tracking Number-  ${trackingId}`}</Typography>
         <Typography
           display="inline"
-          className="title"
+          className={classes["title"]}
         >{`Courier-  ${courierName}`}</Typography>
       </Box>
-      <Typography className="progress-track">
+      <Typography className={classes["progress-track"]}>
         {orderFlow(statusCode)}
       </Typography>
     </Box>
   ) : (
-    <Box className="card">
-      <Box display="flex" className="tracking">
+    <Box className={classes["card"]}>
+      <Box display="flex" className={classes["tracking"]}>
         <Typography sx={{ ml: 3 }} color="#ef5350" align="center">
           Kindly update the current address!
         </Typography>
-        <Button
+        {/* <Button
           sx={{
             color: "white",
             background: "#ef5350",
@@ -48,7 +53,7 @@ export default function AssetTracker({
           href="/profile"
         >
           Click Here
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );

@@ -9,8 +9,8 @@ import { green } from "@mui/material/colors";
 export default function AssetDeliveryCard() {
   // Need to send the status code to assetTracker as
   // 1: Packed, 2: Shipped, 3: In Out for Delivery, 4: Delivered/Received
-  const laptopDeliveryStatusCode = 3;
-  const kitDeliveryStatusCode = 2;
+  const laptopDeliveryStatusCode = 4;
+  const kitDeliveryStatusCode = 1;
   // Need Tracking Id from API
   const laptopTrackingId = "109861D";
   const kitTrackingId = "906783C";
@@ -18,8 +18,8 @@ export default function AssetDeliveryCard() {
   const laptopCourierName = "Blue Dart";
   const kitCourierName = "DHL";
   //Will take current address of the user from store
-  const currentAddress = "Mojahidpur West, Bhagalpur, Bihar, 812002";
-  // const currentAddress = "";
+  // const currentAddress = "Mojahidpur West, Bhagalpur, Bihar, 812002";
+  const currentAddress = "";
   return (
     <Grid
       item

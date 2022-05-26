@@ -164,7 +164,7 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List component="nav" style={{background:'#0a305a', color: 'white'}}>
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {/* {secondaryListItems} */}

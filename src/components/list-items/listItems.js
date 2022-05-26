@@ -4,33 +4,58 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
+import PersonIcon from "@mui/icons-material/Person";
+// import PeopleIcon from "@mui/icons-material/People";
+import ArticleIcon from "@mui/icons-material/Article";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { NavLink } from "react-router-dom";
+import { red } from "@mui/material/colors";
+// import './listItems.css'
+
+const navStyle = {
+  color: "white",
+  textDecoration: "none",
+  fontSize: "20px",
+  fontWeight: "700",
+};
+
+const iconColor={}
 
 export const mainListItems = (
   <React.Fragment>
-    <NavLink to="/profile">
+    <NavLink to="/dashboard" style={navStyle}>
       <ListItemButton>
         <ListItemIcon>
-          <DashboardIcon />
+          <DashboardIcon color='white'/>
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink
+      to="/profile"
+      style={navStyle}
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <PersonIcon />
         </ListItemIcon>
         <ListItemText primary="Profile" />
       </ListItemButton>
     </NavLink>
-    <NavLink to="/documents">
+    <NavLink
+      to="/documents"
+      style={navStyle}
+    >
       <ListItemButton>
         <ListItemIcon>
-          <ShoppingCartIcon />
+          <ArticleIcon />
         </ListItemIcon>
         <ListItemText primary="Documents" />
       </ListItemButton>
     </NavLink>
 
-    <NavLink to="/laptop_delivery">
+    {/* <NavLink to="/laptop_delivery">
       <ListItemButton>
         <ListItemIcon>
           <PeopleIcon />
@@ -45,11 +70,14 @@ export const mainListItems = (
         </ListItemIcon>
         <ListItemText primary="Kit Delivery" />
       </ListItemButton>
-    </NavLink>
-    <NavLink to="/poc">
+    </NavLink> */}
+    <NavLink
+      to="/poc"
+      style={navStyle}
+    >
       <ListItemButton>
         <ListItemIcon>
-          <LayersIcon />
+          <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="POC" />
       </ListItemButton>

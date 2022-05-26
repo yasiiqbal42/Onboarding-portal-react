@@ -22,12 +22,14 @@ export default function DocumentCard() {
   // }, []);
 
   const documentData = {
-    aadhar_status: 1,
+    aadhar_status: '',
     pan_status: 1,
     relieving_letter: 1,
     degree_certificate: 1,
     service_letter: 1,
   };
+
+  //Rounded Corner card, Box Shadow, button on the right bottom, keys should be in bold
 
   const getCompletionStatus = () => {
     return documentData.aadhar_status &&

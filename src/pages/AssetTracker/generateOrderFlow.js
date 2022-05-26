@@ -1,10 +1,12 @@
+import "./AssetTracker.css";
 export default function orderFlow(statusCode) {
   switch (statusCode) {
     /* 1: Packed 2:  <span className="shipped">Shipped</span> 3: In <span className="out-for-delivery">Out for Delivery</span> 4: <span className="delivered">Delivered</span>/Received */
     case 1:
       return (
         <ul id="progressbar">
-          <li className="step0 active " id="step1">
+          {/* <li className={`${classes["step0"]} ${classes["active"]}`} id="step1"> */}
+          <li className="step0 active" id="step1">
             Packed
           </li>
           <li className="step0  text-center" id="step2">
