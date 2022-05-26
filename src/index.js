@@ -1,17 +1,36 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import CssBaseline from "@mui/material/CssBaseline";
-import App from "./App";
+
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Routes,Route } from "react-router-dom";
-import SignIn from "./pages/SignIn";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import SignIn from "../src/SignIn";
+import Dashboard from "./Dashboard";
+import PrivateRoute from "./App";
+
+// import SignIn from "../src/SignIn";
+
 
 ReactDOM.render(
   <React.Fragment>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <BrowserRouter>
-      <SignIn/>
+      <Provider store={store}>
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          ></Route>
+        </Routes>
+      </Provider>
     </BrowserRouter>
   </React.Fragment>,
   document.getElementById("root")
